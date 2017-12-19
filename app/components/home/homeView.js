@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Home.css';
+import styles from './_styles.css';
 import Button from 'material-ui/Button';
 
 export default class Home extends Component {
