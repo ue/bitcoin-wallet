@@ -3,21 +3,21 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { BrowserRouter as Router } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import Wallet from '../../app/components/Wallet';
+import Wallet from '../../app/components/wallet/walletView';
 
 function setup() {
   const actions = {
     increment: spy(),
     incrementIfOdd: spy(),
     incrementAsync: spy(),
-    decrement: spy()
+    decrement: spy(),
   };
   const component = shallow(<Wallet wallet={1} {...actions} />);
   return {
     component,
     actions,
     buttons: component.find('button'),
-    p: component.find('.wallet')
+    p: component.find('.wallet'),
   };
 }
 
@@ -41,7 +41,7 @@ describe('Wallet component', () => {
           <Router>
             <Wallet wallet={1} {...actions} />
           </Router>
-        </div>
+        </div>,
       )
       .toJSON();
 

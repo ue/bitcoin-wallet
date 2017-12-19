@@ -1,11 +1,11 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Wallet from '../components/Wallet';
+import Wallet from '../components/wallet/walletView';
 import * as WalletActions from '../actions/wallet';
 
 function mapStateToProps(state) {
   return {
-    wallet: state.wallet
+    wallet: state.wallet,
   };
 }
 
