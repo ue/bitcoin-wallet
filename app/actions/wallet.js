@@ -1,30 +1,30 @@
 // @flow
-import type { counterStateType } from '../reducers/counter';
+import type { walletStateType } from '../reducers/wallet';
 
 type actionType = {
   +type: string
 };
 
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
+export const INCREMENT_WALLET = 'INCREMENT_WALLET';
+export const DECREMENT_WALLET = 'DECREMENT_WALLET';
 
 export function increment() {
   return {
-    type: INCREMENT_COUNTER
+    type: INCREMENT_WALLET
   };
 }
 
 export function decrement() {
   return {
-    type: DECREMENT_COUNTER
+    type: DECREMENT_WALLET
   };
 }
 
 export function incrementIfOdd() {
-  return (dispatch: (action: actionType) => void, getState: () => counterStateType) => {
-    const { counter } = getState();
+  return (dispatch: (action: actionType) => void, getState: () => walletStateType) => {
+    const { wallet } = getState();
 
-    if (counter % 2 === 0) {
+    if (wallet % 2 === 0) {
       return;
     }
 

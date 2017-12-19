@@ -1,5 +1,5 @@
 import { spy } from 'sinon';
-import * as actions from '../../app/actions/counter';
+import * as actions from '../../app/actions/wallet';
 
 describe('actions', () => {
   it('should increment should create increment action', () => {
@@ -14,15 +14,15 @@ describe('actions', () => {
     const fn = actions.incrementIfOdd();
     expect(fn).toBeInstanceOf(Function);
     const dispatch = spy();
-    const getState = () => ({ counter: 1 });
+    const getState = () => ({ wallet: 1 });
     fn(dispatch, getState);
-    expect(dispatch.calledWith({ type: actions.INCREMENT_COUNTER })).toBe(true);
+    expect(dispatch.calledWith({ type: actions.INCREMENT_WALLET })).toBe(true);
   });
 
-  it('should incrementIfOdd shouldnt create increment action if counter is even', () => {
+  it('should incrementIfOdd shouldnt create increment action if wallet is even', () => {
     const fn = actions.incrementIfOdd();
     const dispatch = spy();
-    const getState = () => ({ counter: 2 });
+    const getState = () => ({ wallet: 2 });
     fn(dispatch, getState);
     expect(dispatch.called).toBe(false);
   });
@@ -34,7 +34,7 @@ describe('actions', () => {
     const dispatch = spy();
     fn(dispatch);
     setTimeout(() => {
-      expect(dispatch.calledWith({ type: actions.INCREMENT_COUNTER })).toBe(true);
+      expect(dispatch.calledWith({ type: actions.INCREMENT_WALLET })).toBe(true);
       done();
     }, 5);
   });

@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
 import { ConnectedRouter } from 'react-router-redux';
-import CounterPage from '../../app/containers/CounterPage';
+import WalletPage from '../../app/containers/WalletPage';
 import { configureStore } from '../../app/store/configureStore';
 
 function setup(initialState) {
@@ -12,14 +12,14 @@ function setup(initialState) {
   const app = mount(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <CounterPage />
+        <WalletPage />
       </ConnectedRouter>
     </Provider>
   );
   return {
     app,
     buttons: app.find('button'),
-    p: app.find('.counter')
+    p: app.find('.wallet')
   };
 }
 
@@ -49,7 +49,7 @@ describe('containers', () => {
     });
 
     it('should change if odd and if odd button clicked', () => {
-      const { buttons, p } = setup({ counter: 1 });
+      const { buttons, p } = setup({ wallet: 1 });
       buttons.at(2).simulate('click');
       expect(p.text()).toMatch(/^2$/);
     });

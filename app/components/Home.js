@@ -10,7 +10,7 @@ export default class Home extends Component {
       <div>
         <div className={styles.container} data-tid="container">
           <h2>The Wallet</h2>
-          <Link to="/counter">
+          <Link to="/wallet">
             <Button raised color="primary">
               Start
             </Button>

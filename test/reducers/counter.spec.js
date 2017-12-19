@@ -1,22 +1,22 @@
-import counter from '../../app/reducers/counter';
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../../app/actions/counter';
+import wallet from '../../app/reducers/wallet';
+import { INCREMENT_WALLET, DECREMENT_WALLET } from '../../app/actions/wallet';
 
 describe('reducers', () => {
-  describe('counter', () => {
+  describe('wallet', () => {
     it('should handle initial state', () => {
-      expect(counter(undefined, {})).toMatchSnapshot();
+      expect(wallet(undefined, {})).toMatchSnapshot();
     });
 
-    it('should handle INCREMENT_COUNTER', () => {
-      expect(counter(1, { type: INCREMENT_COUNTER })).toMatchSnapshot();
+    it('should handle INCREMENT_WALLET', () => {
+      expect(wallet(1, { type: INCREMENT_WALLET })).toMatchSnapshot();
     });
 
-    it('should handle DECREMENT_COUNTER', () => {
-      expect(counter(1, { type: DECREMENT_COUNTER })).toMatchSnapshot();
+    it('should handle DECREMENT_WALLET', () => {
+      expect(wallet(1, { type: DECREMENT_WALLET })).toMatchSnapshot();
     });
 
     it('should handle unknown action type', () => {
-      expect(counter(1, { type: 'unknown' })).toMatchSnapshot();
+      expect(wallet(1, { type: 'unknown' })).toMatchSnapshot();
     });
   });
 });

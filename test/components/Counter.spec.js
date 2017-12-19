@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { BrowserRouter as Router } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import Counter from '../../app/components/Counter';
+import Wallet from '../../app/components/Wallet';
 
 function setup() {
   const actions = {
@@ -12,16 +12,16 @@ function setup() {
     incrementAsync: spy(),
     decrement: spy()
   };
-  const component = shallow(<Counter counter={1} {...actions} />);
+  const component = shallow(<Wallet wallet={1} {...actions} />);
   return {
     component,
     actions,
     buttons: component.find('button'),
-    p: component.find('.counter')
+    p: component.find('.wallet')
   };
 }
 
-describe('Counter component', () => {
+describe('Wallet component', () => {
   it('should should display count', () => {
     const { p } = setup();
     expect(p.text()).toMatch(/^1$/);
@@ -39,7 +39,7 @@ describe('Counter component', () => {
       .create(
         <div>
           <Router>
-            <Counter counter={1} {...actions} />
+            <Wallet wallet={1} {...actions} />
           </Router>
         </div>
       )

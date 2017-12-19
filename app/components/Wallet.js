@@ -1,19 +1,19 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Counter.css';
+import styles from './Wallet.css';
 
-class Counter extends Component {
+class Wallet extends Component {
   props: {
     increment: () => void,
     incrementIfOdd: () => void,
     incrementAsync: () => void,
     decrement: () => void,
-    counter: number
+    wallet: number
   };
 
   render() {
-    const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
+    const { increment, incrementIfOdd, incrementAsync, decrement, wallet } = this.props;
     return (
       <div>
         <div className={styles.backButton} data-tid="backButton">
@@ -21,8 +21,8 @@ class Counter extends Component {
             <i className="fa fa-arrow-left fa-3x" />
           </Link>
         </div>
-        <div className={`counter ${styles.counter}`} data-tid="counter">
-          {counter}
+        <div className={`wallet ${styles.wallet}`} data-tid="wallet">
+          {wallet}
         </div>
         <div className={styles.btnGroup}>
           <button className={styles.btn} onClick={increment} data-tclass="btn">
@@ -39,4 +39,4 @@ class Counter extends Component {
   }
 }
 
-export default Counter;
+export default Wallet;
