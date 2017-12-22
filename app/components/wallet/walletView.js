@@ -1,5 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Route } from 'react-router';
+import SettingView from '../settings/settingsView';
+import HistoryView from '../history/historyView';
+import InboxView from '../inbox/inboxView';
+import ExchangeView from '../exchange/exchangeView';
+import WalletsView from '../wallets/walletsView';
 
 import {
   AppBar,
@@ -11,7 +17,6 @@ import {
   Hidden,
   Divider,
   withStyles,
-  Paper,
 } from 'material-ui';
 
 import MenuIcon from 'material-ui-icons/Menu';
@@ -60,7 +65,7 @@ const styles = theme => ({
     position: 'absolute',
     marginLeft: '-8px',
     [theme.breakpoints.up('sm')]: {
-      backgroundColor: 'red',
+      backgroundColor: '#0099ff',
       height: 'calc(100%)',
       marginLeft: '-8px',
     },
@@ -140,7 +145,11 @@ class Wallet extends React.Component {
             </Drawer>
           </Hidden>
           <main className={classes.content}>
-            <Typography noWrap>{'Content'}</Typography>
+            <Route path="/wallet/settings" component={SettingView} />
+            <Route path="/wallet/history" component={HistoryView} />
+            <Route path="/wallet/exchange" component={ExchangeView} />
+            <Route path="/wallet/inbox" component={InboxView} />
+            <Route path="/wallet/wallets" component={WalletsView} />
           </main>
         </div>
       </div>

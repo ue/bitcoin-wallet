@@ -5,7 +5,7 @@ export default class Settings extends Component {
     return (
       <div>
         <div>
-          <h2>WELCOME!! TO SETTINGS PAGE</h2>
+          <h2>WELCOME!! TO WALLETS PAGE</h2>
         </div>
       </div>
     );
