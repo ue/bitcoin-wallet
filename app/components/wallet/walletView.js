@@ -11,11 +11,12 @@ import {
   Hidden,
   Divider,
   withStyles,
+  Paper,
 } from 'material-ui';
 
 import MenuIcon from 'material-ui-icons/Menu';
 
-import { menuListItems, underMenuListItems } from './tileData';
+import { menuListItems, underMenuListItems } from '../list/listView';
 
 const drawerWidth = 240;
 
@@ -23,18 +24,15 @@ const styles = theme => ({
   root: {
     width: '100%',
     height: 500,
-    marginTop: theme.spacing.unit * 3,
     zIndex: 1,
     overflow: 'hidden',
   },
   appFrame: {
-    position: 'relative',
     display: 'flex',
     width: '100%',
     height: '100%',
   },
   appBar: {
-    position: 'absolute',
     marginLeft: drawerWidth,
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,
@@ -50,7 +48,6 @@ const styles = theme => ({
     width: 250,
     [theme.breakpoints.up('md')]: {
       width: drawerWidth,
-      position: 'relative',
       height: '100%',
     },
   },
@@ -59,10 +56,17 @@ const styles = theme => ({
     width: '100%',
     padding: theme.spacing.unit * 3,
     height: 'calc(100% - 56px)',
-    marginTop: 56,
+    marginTop: 49,
+    position: 'absolute',
+    marginLeft: '-8px',
     [theme.breakpoints.up('sm')]: {
-      height: 'calc(100% - 64px)',
-      marginTop: 64,
+      backgroundColor: 'red',
+      height: 'calc(100%)',
+      marginLeft: '-8px',
+    },
+    [theme.breakpoints.up('md')]: {
+      marginLeft: drawerWidth - 6.9,
+      height: 'calc(100%)',
     },
   },
 });
