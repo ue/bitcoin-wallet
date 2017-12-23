@@ -7,6 +7,7 @@ import InboxView from '../inbox/inboxView';
 import ExchangeView from '../exchange/exchangeView';
 import WalletsView from '../wallets/walletsView';
 import PriceView from '../price/priceView';
+import IconView from '../icon/iconView';
 
 import {
   AppBar,
@@ -49,7 +50,6 @@ const styles = theme => ({
       display: 'none',
     },
   },
-  drawerHeader: theme.mixins.toolbar,
   drawerPaper: {
     width: 250,
     [theme.breakpoints.up('md')]: {
@@ -92,6 +92,7 @@ class Wallet extends React.Component {
     const drawer = (
       <div>
         <div className={classes.drawerHeader} />
+        <IconView />
         <PriceView />
         <List>{menuListItems}</List>
         <Divider />
