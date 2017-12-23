@@ -13,17 +13,6 @@ const styles = theme => ({
     paddingTop: 10,
     paddingBottom: 10,
   },
-  updated: {
-    color: theme.palette.text.secondary,
-    fontSize: 13,
-  },
-  updateIcon: {
-    marginTop: 0,
-  },
-  chip: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#01ff20',
-  },
 });
 
 function priceView(props) {
