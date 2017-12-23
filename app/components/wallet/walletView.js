@@ -6,6 +6,7 @@ import HistoryView from '../history/historyView';
 import InboxView from '../inbox/inboxView';
 import ExchangeView from '../exchange/exchangeView';
 import WalletsView from '../wallets/walletsView';
+import PriceView from '../price/priceView';
 
 import {
   AppBar,
@@ -91,7 +92,7 @@ class Wallet extends React.Component {
     const drawer = (
       <div>
         <div className={classes.drawerHeader} />
-        <Divider />
+        <PriceView />
         <List>{menuListItems}</List>
         <Divider />
         <List>{underMenuListItems}</List>
