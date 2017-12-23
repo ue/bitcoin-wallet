@@ -7,7 +7,7 @@ import InboxView from '../inbox/inboxView';
 import ExchangeView from '../exchange/exchangeView';
 import WalletsView from '../wallets/walletsView';
 import PriceView from '../price/priceView';
-import IconView from '../icon/iconView';
+import LogoView from '../icon/iconView';
 
 import {
   AppBar,
@@ -92,7 +92,7 @@ class Wallet extends React.Component {
     const drawer = (
       <div>
         <div className={classes.drawerHeader} />
-        <IconView />
+        <LogoView />
         <PriceView />
         <List>{menuListItems}</List>
         <Divider />
