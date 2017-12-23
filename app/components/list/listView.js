@@ -82,7 +82,7 @@ export const underMenuListItems = (
       </ListItem>
     </Link>
 
-    <Link to="/wallet/logout">
+    <Link to="/">
       <ListItem button>
         <ListItemIcon>
           <ExitToApp />
