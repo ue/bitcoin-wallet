@@ -7,7 +7,8 @@ import InboxView from '../inbox/inboxView';
 import ExchangeView from '../exchange/exchangeView';
 import WalletsView from '../wallets/walletsView';
 import PriceView from '../price/priceView';
-import LogoView from '../icon/iconView';
+import LogoView from '../logo/logoView';
+import QuicUserProfileView from '../quickUserProfile/quicUserProfileView';
 
 import {
   AppBar,
@@ -97,7 +98,8 @@ class Wallet extends React.Component {
         <List>{menuListItems}</List>
         <Divider />
         <List>{underMenuListItems}</List>
-        <List>Ugur ERDAL</List>
+        <Divider />
+        <QuicUserProfileView />
       </div>
     );
 

@@ -19,7 +19,7 @@ const styles = {
   },
 };
 
-function ImageAvatars(props) {
+function LogoView(props) {
   const { classes } = props;
   return (
     <div className={classes.row}>
@@ -31,8 +31,8 @@ function ImageAvatars(props) {
   );
 }
 
-ImageAvatars.propTypes = {
+LogoView.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ImageAvatars);
+export default withStyles(styles)(LogoView);
