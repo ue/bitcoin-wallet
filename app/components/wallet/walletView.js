@@ -23,6 +23,7 @@ import {
 } from 'material-ui';
 
 import MenuIcon from 'material-ui-icons/Menu';
+import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 
 import { menuListItems, underMenuListItems } from '../list/listView';
 
@@ -76,6 +77,10 @@ const styles = theme => ({
       height: 'calc(100%)',
     },
   },
+  chevronLeftIcon: {
+    position: 'absolute',
+    right: 0,
+  },
 });
 
 class Wallet extends React.Component {
@@ -87,12 +92,21 @@ class Wallet extends React.Component {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
 
+  handleDrawerClose = () => {
+    this.setState({ mobileOpen: false });
+  };
+
   render() {
     const { classes, theme } = this.props;
 
     const drawer = (
       <div>
         <div className={classes.drawerHeader} />
+        {this.state.mobileOpen ? (
+          <IconButton className={classes.chevronLeftIcon} onClick={this.handleDrawerClose}>
+            <ChevronLeftIcon />
+          </IconButton>
+        ) : null}
         <LogoView />
         <PriceView />
         <List>{menuListItems}</List>
