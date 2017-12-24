@@ -1,8 +1,5 @@
-// @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './_styles.css';
-import Button from 'material-ui/Button';
 import Login from '../login/loginView';
 
 export default class Home extends Component {

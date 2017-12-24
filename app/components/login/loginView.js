@@ -78,7 +78,7 @@ class TextFields extends React.Component {
             margin="normal"
           />
         </FormControl>
-        <Link to="/wallet">
+        <Link to="/wallet/inbox">
           <Button className={classes.formButton} raised color="primary">
             Login
           </Button>

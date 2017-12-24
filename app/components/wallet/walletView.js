@@ -62,11 +62,12 @@ const styles = theme => ({
   content: {
     backgroundColor: theme.palette.background.default,
     width: '100%',
+    height: '100%',
+    position: 'fixed',
     padding: theme.spacing.unit * 3,
-    height: 'calc(100% - 56px)',
     marginTop: 49,
-    position: 'absolute',
     marginLeft: '-8px',
+    textColor: 'black',
     [theme.breakpoints.up('sm')]: {
       backgroundColor: '#0099ff',
       height: 'calc(100%)',
