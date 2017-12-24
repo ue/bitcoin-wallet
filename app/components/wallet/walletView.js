@@ -80,20 +80,21 @@ const styles = theme => ({
   chevronLeftIcon: {
     position: 'absolute',
     right: 0,
+    marginTop: 15,
   },
 });
 
 class Wallet extends React.Component {
   state = {
-    mobileOpen: false,
+    menuOpen: false,
   };
 
   handleDrawerToggle = () => {
-    this.setState({ mobileOpen: !this.state.mobileOpen });
+    this.setState({ menuOpen: !this.state.menuOpen });
   };
 
   handleDrawerClose = () => {
-    this.setState({ mobileOpen: false });
+    this.setState({ menuOpen: false });
   };
 
   render() {
@@ -102,7 +103,7 @@ class Wallet extends React.Component {
     const drawer = (
       <div>
         <div className={classes.drawerHeader} />
-        {this.state.mobileOpen ? (
+        {this.state.menuOpen ? (
           <IconButton className={classes.chevronLeftIcon} onClick={this.handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
@@ -139,7 +140,7 @@ class Wallet extends React.Component {
             <Drawer
               type="temporary"
               anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-              open={this.state.mobileOpen}
+              open={this.state.menuOpen}
               classes={{
                 paper: classes.drawerPaper,
               }}
