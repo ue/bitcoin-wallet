@@ -10,10 +10,26 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron';
+import {app, BrowserWindow} from 'electron';
+import promiseIpc from 'electron-promise-ipc';
 import MenuBuilder from './menu';
+import RPC from '../modules/lib/rpc';
+import Config from '../wallet.config';
 
 let mainWindow = null;
+
+let Client = new RPC.Client(Config);
+
+promiseIpc.on('rpc_call', (method, args) => {
+  return new Promise((resolve, reject) => {
+    Client.call(method, args, data => {
+      resolve(data)
+    }, error => {
+      reject(error)
+    })
+  });
+});
+
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');

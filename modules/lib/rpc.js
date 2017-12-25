@@ -1,18 +1,18 @@
-var http = require('http')
-var https = require('https')
+var http = require('http');
+var https = require('https');
 
 var Client = function (opts) {
-  this.opts = opts || {}
+  this.opts = opts || {};
   this.http = this.opts.ssl ? https : http
 };
 
 Client.prototype.call = function (method, params, callback, errback, path) {
-  var time = Date.now()
-  var requestJSON
+  var time = Date.now();
+  var requestJSON;
 
   if (Array.isArray(method)) {
     // multiple rpc batch call
-    requestJSON = []
+    requestJSON = [];
     method.forEach(function (batchCall, i) {
       requestJSON.push({
         id: time + '-' + i,
@@ -30,7 +30,7 @@ Client.prototype.call = function (method, params, callback, errback, path) {
   }
 
   // First we encode the request into JSON
-  requestJSON = JSON.stringify(requestJSON)
+  requestJSON = JSON.stringify(requestJSON);
 
   // prepare request options
   var requestOptions = {
@@ -44,7 +44,7 @@ Client.prototype.call = function (method, params, callback, errback, path) {
     },
     agent: false,
     rejectUnauthorized: this.opts.ssl && this.opts.sslStrict !== false
-  }
+  };
 
   if (this.opts.ssl && this.opts.sslCa) {
     requestOptions.ca = this.opts.sslCa
@@ -56,63 +56,63 @@ Client.prototype.call = function (method, params, callback, errback, path) {
   }
 
   // Now we'll make a request to the server
-  var cbCalled = false
-  var request = this.http.request(requestOptions)
+  var cbCalled = false;
+  var request = this.http.request(requestOptions);
 
   // start request timeout timer
   var reqTimeout = setTimeout(function () {
-    if (cbCalled) return
-    cbCalled = true
-    request.abort()
-    var err = new Error('ETIMEDOUT')
-    err.code = 'ETIMEDOUT'
+    if (cbCalled) return;
+    cbCalled = true;
+    request.abort();
+    var err = new Error('ETIMEDOUT');
+    err.code = 'ETIMEDOUT';
     errback(err)
-  }, this.opts.timeout || 30000)
+  }, this.opts.timeout || 30000);
 
   // set additional timeout on socket in case of remote freeze after sending headers
   request.setTimeout(this.opts.timeout || 30000, function () {
-    if (cbCalled) return
-    cbCalled = true
-    request.abort()
-    var err = new Error('ESOCKETTIMEDOUT')
-    err.code = 'ESOCKETTIMEDOUT'
+    if (cbCalled) return;
+    cbCalled = true;
+    request.abort();
+    var err = new Error('ESOCKETTIMEDOUT');
+    err.code = 'ESOCKETTIMEDOUT';
     errback(err)
-  })
+  });
 
   request.on('error', function (err) {
-    if (cbCalled) return
-    cbCalled = true
-    clearTimeout(reqTimeout)
+    if (cbCalled) return;
+    cbCalled = true;
+    clearTimeout(reqTimeout);
     errback(err)
-  })
+  });
 
   request.on('response', function (response) {
-    clearTimeout(reqTimeout)
+    clearTimeout(reqTimeout);
 
     // We need to buffer the response chunks in a nonblocking way.
-    var buffer = ''
+    var buffer = '';
     response.on('data', function (chunk) {
       buffer = buffer + chunk
-    })
+    });
     // When all the responses are finished, we decode the JSON and
     // depending on whether it's got a result or an error, we call
     // emitSuccess or emitError on the promise.
     response.on('end', function () {
-      var err
+      var err;
 
-      if (cbCalled) return
-      cbCalled = true
+      if (cbCalled) return;
+      cbCalled = true;
 
       try {
         var decoded = JSON.parse(buffer)
       } catch (e) {
         if (response.statusCode !== 200) {
-          err = new Error('Invalid params, response status code: ' + response.statusCode)
-          err.code = -32602
+          err = new Error('Invalid params, response status code: ' + response.statusCode);
+          err.code = -32602;
           errback(err)
         } else {
-          err = new Error('Problem parsing JSON response from server')
-          err.code = -32603
+          err = new Error('Problem parsing JSON response from server');
+          err.code = -32603;
           errback(err)
         }
         return
@@ -127,7 +127,7 @@ Client.prototype.call = function (method, params, callback, errback, path) {
       decoded.forEach(function (decodedResponse, i) {
         if (decodedResponse.hasOwnProperty('error') && decodedResponse.error != null) {
           if (errback) {
-            err = new Error(decodedResponse.error.message || '')
+            err = new Error(decodedResponse.error.message || '');
             if (decodedResponse.error.code) {
               err.code = decodedResponse.error.code
             }
@@ -139,7 +139,7 @@ Client.prototype.call = function (method, params, callback, errback, path) {
           }
         } else {
           if (errback) {
-            err = new Error(decodedResponse.error.message || '')
+            err = new Error(decodedResponse.error.message || '');
             if (decodedResponse.error.code) {
               err.code = decodedResponse.error.code
             }
@@ -148,8 +148,8 @@ Client.prototype.call = function (method, params, callback, errback, path) {
         }
       })
     })
-  })
+  });
   request.end(requestJSON)
-}
+};
 
 module.exports.Client = Client;
