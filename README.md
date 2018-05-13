@@ -7,7 +7,7 @@
 First, clone the repo via git:
 
 ```bash
-git clone https://github.com/ulaskilic/HybritWallet.git
+git clone https://github.com/ue/bitcoin-wallet.git
 ```
 
 And then install dependencies with yarn.
